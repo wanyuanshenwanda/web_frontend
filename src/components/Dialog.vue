@@ -1,43 +1,41 @@
 <template>
-  <div>
-    <el-dialog
-      :model-value="show"
-      @update:model-value="(value) => (show = value)"
-      :show-close="showClose"
-      :close-on-click-modal="false"
-      :draggable="true"
-      :title="title"
-      :width="width"
-      :top="top"
-      @close="close"
-      modal-class="custom-dialog"
-    >
-      <div class="dialog-body">
-        <slot></slot>
+  <el-dialog
+    :model-value="Show"
+    :title="title"
+    :width="width"
+    :show-close="showClose"
+    :draggable="true"
+    :close-on-click-modal="false"
+    class="cust-dialog"
+    :top="top"
+    @close="close"
+  >
+    <div class="dialog-body">
+      <slot> </slot>
+    </div>
+    <template v-if="(buttons && buttons.length > 0) || showCancel">
+      <div class="dialog-footer">
+        <el-button link @click="close" v-if="showCancel" type="primary"
+          >取消</el-button
+        >
+        <el-button
+          v-for="(btn, index) in buttons"
+          :key="index"
+          :type="btn.type"
+          @click="btn.click"
+          >{{ btn.text }}</el-button
+        >
       </div>
-      <template v-if="(buttons && buttons.length > 0) || showCancel">
-        <div class="dialog-footer">
-          <el-button link @click="close" v-if="showCancel" type="primary">取消</el-button>
-          <el-button
-            v-for="(btn, index) in buttons"
-            :key="index"
-            :type="btn.type"
-            @click="btn.click"
-          >
-            {{ btn.text }}
-          </el-button>
-        </div>
-      </template>
-    </el-dialog>
-  </div>
+    </template>
+  </el-dialog>
 </template>
 
 <script setup>
 import {defineEmits} from 'vue'
 const props = defineProps({
-  show: {
+  Show: {
     type: Boolean,
-    default: false,
+    default: true,
   },
   title: {
     type: String,
@@ -64,16 +62,15 @@ const props = defineProps({
     default: true,
   },
 });
-
 const emit = defineEmits(["close"]);
-const close = () => {
+const close = function () {
   emit("close");
 };
 </script>
 
 <style lang="scss" scoped>
-.custom-dialog {
-  margin-bottom: 0 auto !important;
+.cust-dialog {
+  margin: 0 auto !important;
   .el-dialog__body {
     padding: 0px;
   }
@@ -83,10 +80,11 @@ const close = () => {
     padding: 15px;
     min-height: 100px;
     max-height: calc(100vh - 190px);
+    overflow: auto;
   }
   .dialog-footer {
-    padding: 10px 20px;
     text-align: right;
+    padding: 10px 20px;
   }
 }
 </style>

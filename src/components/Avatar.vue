@@ -20,12 +20,13 @@
       @click="goToUcenter"
     >
     </el-image>
+    <div v-else class="no-login">未登录</div>
   </div>
 </template>
 
 <script setup>
 import { getCurrentInstance } from "vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 const { proxy } = getCurrentInstance();
 const router = useRouter();
 
@@ -45,9 +46,22 @@ const props = defineProps({
 
 const goToUcenter = () => {
   if (props.addLink) {
-    router.push(`/user/${props.userId}`);
+    router.push("/user/" + proxy.userId);
   }
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" >
+.avatar {
+  display: flex;
+  cursor: pointer;
+  background: #c9c6c6;
+  align-items: center;
+  overflow: hidden;
+  .no-login{
+    width:100%;
+    text-align: center;
+    font-size: 13px;
+  }
+}
+</style>

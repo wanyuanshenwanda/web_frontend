@@ -8,9 +8,7 @@ export default createStore({
         showLogin: false,
         //版块信息
         boardList: [],
-        //当前一级版块
-        activePboardId: 0,
-        //当前二级版块
+
         activeBoardId: 0,
         //消息数量
         messageCountInfo: {}
@@ -25,9 +23,6 @@ export default createStore({
         getSubBoardList: (state) => (boardId) => {
             let board = state.boardList.find(item => item.boardId == boardId)
             return board ? board.children : []
-        },
-        getactivePboardId: (state) => {
-            return state.activePboardId
         },
         getActiveBoardId: (state) => {
             return state.activeBoardId;
@@ -47,9 +42,6 @@ export default createStore({
         saveBoardList(state, value) {
             state.boardList = value
         },
-        setactivePboardId: (state, value) => {
-            state.activePboardId = value
-        },
         setActiveBoardId: (state, value) => {
             state.activeBoardId = value
         },
@@ -62,4 +54,10 @@ export default createStore({
             state.messageCountInfo[value] = 0
         }
     },
+    actions: {
+
+    },
+    modules: {
+
+    }
 })

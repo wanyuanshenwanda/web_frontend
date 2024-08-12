@@ -1,6 +1,12 @@
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
+  /**/
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(239, 239, 239);
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -12,25 +18,67 @@
   background: #bfbfbf;
 }
 
-::-webkit-scrollbar-track {
-  background: rgb(239, 239, 239);
-  border-radius: 2px;
-}
-
 ::-webkit-scrollbar-corner {
   background: #bfbfbf;
 }
 
 :root {
-  --link: #409eff;
+  --link: #007fff;
+  --pink: #FF6699;
+  --text2: #61666d;
+  --icon: #9499a0;
 }
 
 body {
-  margin: 0px;
   padding: 0px;
+  margin: 0px;
+  background: rgb(243, 243, 243);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 .a-link {
   text-decoration: none;
   color: var(--link);
+  cursor: pointer;
+}
+
+.el-form-item {
+  align-items: center;
+}
+
+.container-body {
+  margin: 0px auto;
+  padding-top: 5px;
+}
+
+.tag {
+  font-size: 12px;
+  border-radius: 3px;
+  padding: 0px 5px;
+  margin-right: 5px;
+  font-weight: normal;
+}
+
+.tag-no-audit {
+  color: var(--text2);
+  border: 1px solid var(--text2);
+}
+
+.container-board-body {
+  margin: 0px auto;
+  padding-top: 5px;
+}
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 10px;
+  background: #fff;
+  border-bottom: 1px solid #e8e8e8;
+  font-size: large;
+  color: #007fff;
 }
